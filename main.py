@@ -16,33 +16,6 @@ def most_likely_ambo(history):
 # print("L'ambo più probabile è composto dai numeri:", likely_ambo)
 
 
-
-
-
-
-
-
-#####################
-
-# def most_likely_ambo(history):
-#   total_combinations = 90
-#   combination_counts = {}
-  
-#   # Contare quante volte ogni combinazione di ambi è uscita nello storico per ogni Ruota
-#   for draw in history:
-#     for i in range(len(draw)):
-#       for j in range(i+1, len(draw)):
-#         combination = [draw[i], draw[j]]
-#         combination.sort()
-#         if tuple(combination) in combination_counts:
-#           combination_counts[tuple(combination)] += 1
-#         else:
-#           combination_counts[tuple(combination)] = 1
-  
-#   # Trovare la combinazione di ambi più probabile
-#   most_likely_combination = max(combination_counts, key=combination_counts.get)
-#   return most_likely_combination
-
 def archivio_lotto(file_name):
 
     with open(file_name, "r") as file:
@@ -59,3 +32,5 @@ def archivio_lotto(file_name):
 history = archivio_lotto("ArchivioLotto.italia.txt")
 likely_ambo = most_likely_ambo(history)
 print("L'ambo più probabile è:", likely_ambo)
+
+# prossima implementazione "ambo più probabile per ruota"
