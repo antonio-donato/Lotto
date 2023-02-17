@@ -23,14 +23,18 @@ def archivio_lotto(file_name):
 
     records = [line.strip() for line in lines]
 
-    nuova_lista = []
+    nuova_lista = {}
     for record in records:
-        parti = record.split()
-        nuova_lista.append([int(parti[2]), int(parti[3]), int(parti[4]), int(parti[5]), int(parti[6])])
+        estr_data, ruota, n1, n2, n3, n4, n5 = record.split()
+        draw = [int(n1), int(n2), int(n3), int(n4), int(n5)]
+        if ruota not in nuova_lista:
+           nuova_lista[ruota] = []
+        nuova_lista[ruota].append(draw)
+
+        # nuova_lista.append([int(parti[2]), int(parti[3]), int(parti[4]), int(parti[5]), int(parti[6])])
     return nuova_lista
 
 history = archivio_lotto("ArchivioLotto.italia.txt")
-likely_ambo = most_likely_ambo(history)
-print("L'ambo più probabile è:", likely_ambo)
-
-# prossima implementazione "ambo più probabile per ruota"
+for ruota, hist in history.items():
+    likely_ambo = most_likely_ambo(hist)
+    print("L'ambo più probabile sulla ruota di {} è: {}".format(ruota, likely_ambo))
